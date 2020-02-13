@@ -13,15 +13,15 @@ def gokken():
         string = string + temp                    # for elke string wordt het opgeslagen
     while True:
         gok = input('Geef je 4 random getallen: ')
-        if gok.isnumeric() and len(gok) == 4:       # dus als de input gelijk is aan een integer en de lengte van de string is gelijk aan 4 dan verder
+        if gok.isnumeric() and len(gok) == 4:      # dus als de input gelijk is aan een integer en de lengte van de string is gelijk aan 4 dan verder
             nummer = 0                          # de index 0
             for x in range (0,3):
-                if gok[x] == string[x]:      #eerste index controleren of het juist is of niet en dan verder
+                if gok[x] == string[x]:      # eerste index controleren of het juist is of niet en dan verder
                     nummer += 1
-            if (gok == string):          # geeft aan in hoevel stappen het geraden is
+            if (gok == string):          # geeft aan in hoevel stappen het geraden is en het aantal stappen
                 print('Goedzo je hebt het geraden dat nam ' + str(pogingen) + ' pogingen in beslag!')
                 break
-            else:                   #  geeft aan hoeveel er juist zijn
+            else:                   #  geeft aan dat het het niet klopt en/of hoeveel getallen juist zijn.
                 print('Dat is niet goed, je hebt ' + str(nummer) + ' getall(en) goed geraden.')
                 pogingen += 1
 gokken()
