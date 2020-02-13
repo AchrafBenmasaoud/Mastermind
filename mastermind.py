@@ -1,10 +1,10 @@
 import random
 # Startscherm
-keuze = input("Kies een spelmode: \nA) Zelf gokken tot de max \nB) Sparren met de computer\n")
-if keuze.lower == "a":          # als de user op a drukt dan gaat het naar de computer.
-    print("Geef een code:")
-if keuze.lower == "b":          # als de user b drukt dan doet de mens het werk.
-    print("Gok")
+keuze = input('Welke optie zou je willen spelen: \nA) Zelf lekker gokken (aanrader!!) \nB) Sparren met de computer\n')
+if keuze.lower == 'A':          # als de user op a drukt dan gaat het naar de computer.
+    print('Geef een code:')
+if keuze.lower == 'B':          # als de user b drukt dan doet de mens het werk.
+    print('Gok')
 def gokken():
     string = ''                      # een lege string om de input later op te slaan
     pogingen = 0
@@ -25,5 +25,6 @@ def gokken():
                 print('Dat is niet goed, je hebt ' + str(nummer) + ' getall(en) goed geraden.')
                 pogingen += 1
 gokken()
+
 
 
