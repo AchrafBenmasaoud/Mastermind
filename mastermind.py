@@ -1,6 +1,3 @@
-from wit import raden
-import random
-
 def gokkentjes():
     string = ''  # een lege string om de input later op te slaan
     for x in range(0, 4):  # het aantal maximale range om te gokken
@@ -28,7 +25,11 @@ def gokkentjes():
             print('Onjuiste waarde')
 
 
-def algoritme1():
+# from feedback import feedback
+#
+from feedback import feedback
+import random
+def algoritme1():       # hij werkt nog niet helemaal
     pogingen = 0
     geheim = input('Geef je 4 random getallen tussen de 0-5 ')
     geheime_lijst = [int(x) for x in geheim]
@@ -37,48 +38,106 @@ def algoritme1():
         for j in range(0, 6):
              for k in range(0, 6):
                 for l in range(0, 6):
-                    lijst.append([i,j,k,l])
+                     lijst.append([i,j,k,l])
     new_list = lijst[:]
     for x in lijst:
         pogingen += 1
         a = random.choice(lijst)
-        mogelijkheid =raden(a, geheime_lijst)
-        checken = raden(x, geheime_lijst)
+        mogelijkheid =feedback(a, geheime_lijst)
+        checken = feedback(x, geheime_lijst)
         if checken != mogelijkheid:
             new_list.remove(x)
             print(a)
-            continue
         elif lijst != 1:
-            print('Computer heeft de code geraden ik ben je te slim af :))')
-            print('Computer Heeft het geraden binnen: ' + str(pogingen) + ' pogingen. ')
+            print('Computer Heeft het geraden binnen: ' + str(pogingen) + ' pogingen' )
             break
     if pogingen <= 10:
-        print('Computer is de nieuwe mastermind! ')
+        print('Computer is de nieuwe mastermind! ' )
     elif pogingen > 10:
         print('Computer heeft zijn dag niet ')
-
-def algoritme2:
-
+algoritme1()
 
 
+from itertools import product
+from collections import Counter
 
+keuze = [''.join(c)
+for c in product('012345', repeat=4)]
 
+def gokkentjes(guess, secret):
+    zwart = sum((Counter(secret) & Counter(guess)).values())
+    wit = sum(x == gokken
+    for x, gokken in zip(secret, guess))
+    return zwart, zwart - wit
 
-def eigenalgoritme3:
+def algoritme2(guess):        # deze werkt wel
+    codes = keuze
+    key = lambda gokken: max(Counter(gokkentjes(gokken, x)
+    for x in codes).values())
+    secret = input('Maak een secret van 4 random getallen 0-5 aan. ')
+    pogingen=0
+    try:
+        while True:
+            feedback = gokkentjes(guess, secret)
+            print(guess, feedback)
+            if guess == secret:
+                break
+            codes = [
+            x for x in codes if gokkentjes(guess, x) == feedback]
+            if len(codes) == 1:
+                guess = codes[0]
+            else:
+                guess = min(keuze, key=key)
+    except ValueError:
+        print('Helaas dit is ongeldig')
 
-
-
+    if pogingen <= 10 and pogingen == ValueError:
+            print('De computer heeft gewonnen. ')
+    if pogingen > 10:
+            print('De computer heeft verloren. ')
+    pogingen += 1
 
 def startscherm():
     print('''                            [---Welkom bij het spel Mastermind---]
-
+# 
 1) Als je voor de optie A kiest ben je of bang voor de computer, of je mag van je vrouw niet meer naar de casino.
-2) Als je voor optie B kiest dan ga je de ring in met de computer en op hoop van zegen dat je wint.
+2) Als je voor optie B of C kiest dan wens ik je veel succes want dat ga je nodig hebben.
             ''')
     keuze = input(
-        'Na de mooie uitleg mag je nu kiezen van wat je wil: \nA) Zelf lekker gokken. \nB) Sparren met de computer.\n')
+        'Na de mooie uitleg mag je nu kiezen van wat je wil: \n'
+        'A) Zelf lekker gokken. \n'
+        'B) Simple strategy algoritme.\n'
+        'C) Knuths algoritme')
     if keuze == 'a':
-        gokkentjes()
+        algoritme1()
     elif keuze == 'b':
         algoritme1()
+    elif keuze == 'c':
+        algoritme2('1122')
 startscherm()
+
+# def heuristiek():
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
